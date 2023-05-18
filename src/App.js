@@ -1,9 +1,13 @@
-import {useEffect, useState} from "react"
-import logo from './logo.svg';
+import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 import './App.css';
+import './index.css';
+
+
+
+// import {AddReactionRounded} from "@mui/icons-material";
 
 function App() {
-
     const [listOfProducts
         , setListOfTypeProducts] = useState([]);
     const [categoryValue, setCategoryValue] = useState("women's clothing");
@@ -49,17 +53,24 @@ function App() {
                 />
             </form>
             <table>
-                {listOfProducts.map(({title, category, price}) => {
+                {listOfProducts.map(({title, category, price, id}) => {
                     return <tr>
                         <td>{title}</td>
                         <td>{category}</td>
                         <td>{price}</td>
+                        <td>
+                            <Link to={`details/${id}`}>Details</Link>
+                            {/*<link onClick={function button(){*/}
+                            {/*        console.log(id);*/}
+                            {/*    }}>*/}
+                            {/*    Details*/}
+                            {/*</link>*/}
+                        </td>
                     </tr>
                 })
                 }
             </table>
         </div>)
 }
-
 
 export default App;

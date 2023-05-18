@@ -2,12 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Details from './Details';
 import reportWebVitals from './reportWebVitals';
 
+import {
+    createBrowserRouter,
+    RouterProvider,
+} from "react-router-dom";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App/>,
+    },
+    {
+        path: "/details/:id",
+        element: <Details/>,
+    },
+]);
 root.render(
   <React.StrictMode>
-    <App />
+      <header>Second Hand</header>
+      <RouterProvider router={router} />
+      <footer>Hand made</footer>
   </React.StrictMode>
 );
 
