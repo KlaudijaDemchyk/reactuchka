@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import './App.css';
 import './index.css';
-
+import ProductRow from './ProductRow'
 
 
 // import {AddReactionRounded} from "@mui/icons-material";
@@ -46,29 +46,25 @@ function App() {
                     <option value="allProducts">Products</option>
                     {
                         listOfCategories.map((category) =>
-                            <option selected={category === categoryValue} value={category}>{category}</option>)
+                            <option defaultValue={category === categoryValue} key={category} value={category}>{category}</option>)
                     }
                 </select>
                 <input type="text" placeholder="max price"
                 />
             </form>
             <table>
-                {listOfProducts.map(({title, category, price, id}) => {
-                    return <tr>
-                        <td>{title}</td>
-                        <td>{category}</td>
-                        <td>{price}</td>
-                        <td>
-                            <Link to={`details/${id}`}>Details</Link>
-                            {/*<link onClick={function button(){*/}
-                            {/*        console.log(id);*/}
-                            {/*    }}>*/}
-                            {/*    Details*/}
-                            {/*</link>*/}
-                        </td>
-                    </tr>
+                <tbody>
+                    {listOfProducts.map(({title, category, price, id}) => {
+                    return <ProductRow
+                            title={title}
+                            category={category}
+                            price={price}
+                            id={id}
+                           />
                 })
                 }
+                </tbody>
+                
             </table>
         </div>)
 }
