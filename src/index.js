@@ -5,27 +5,25 @@ import App from './App';
 import Details from './Details';
 import reportWebVitals from './reportWebVitals';
 
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const currency = 'USD';
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App/>,
-    },
-    {
-        path: "/details/:id",
-        element: <Details/>,
-    },
+  {
+    path: '/',
+    element: <App currency={currency} />,
+  },
+  {
+    path: '/details/:id',
+    element: <Details />,
+  },
 ]);
 root.render(
   <React.StrictMode>
-      <header>Second Hand</header>
-      <RouterProvider router={router} />
-      <footer>Hand made</footer>
+    <header>Second Hand</header>
+    <RouterProvider router={router} />
+    <footer>Hand made</footer>
   </React.StrictMode>
 );
 

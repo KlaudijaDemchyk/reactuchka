@@ -7,11 +7,13 @@ import ProductRow from './ProductRow'
 
 // import {AddReactionRounded} from "@mui/icons-material";
 
-function App() {
+function App({ currency: globalCurrency }) {
     const [listOfProducts
         , setListOfTypeProducts] = useState([]);
     const [categoryValue, setCategoryValue] = useState("women's clothing");
     const [listOfCategories, setOfCategories] = useState([]);
+    const [currency, setCurrency] = useState(globalCurrency);
+
     useEffect(() => {
         fetch('https://fakestoreapi.com/products/categories')
             .then(res => res.json())
@@ -35,38 +37,55 @@ function App() {
 
             })
     }, [categoryValue])
-    console.log(listOfProducts)
+    console.log(currency)
 
     return (
-        <div className="App">
-            <form>
-                <select value={categoryValue} onChange={(event) => {
-                    setCategoryValue(event.target.value);
-                }}>
-                    <option value="allProducts">Products</option>
-                    {
-                        listOfCategories.map((category) =>
-                            <option defaultValue={category === categoryValue} key={category} value={category}>{category}</option>)
-                    }
-                </select>
-                <input type="text" placeholder="max price"
+      <div className="App">
+        <form>
+          <select
+            value={categoryValue}
+            onChange={(event) => {
+              setCategoryValue(event.target.value);
+            }}>
+            <option value="allProducts">Products</option>
+            {listOfCategories.map((category) => (
+              <option
+                defaultValue={category === categoryValue}
+                key={category}
+                value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+          <input type="text" placeholder="max price" />
+          <select
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}>
+            <option defaultValue={currency} value="USD">
+              USD
+            </option>
+            <option value="EUR">EUR</option>
+            <option value="UAH">UAH</option>
+          </select>
+        </form>
+        <table>
+          <tbody>
+            {listOfProducts.map(({ title, category, price, id }) => {
+              return (
+                <ProductRow
+                  title={title}
+                  category={category}
+                  price={price}
+                  id={id}
+                  currency={currency}
+                  key={id}
                 />
-            </form>
-            <table>
-                <tbody>
-                    {listOfProducts.map(({title, category, price, id}) => {
-                    return <ProductRow
-                            title={title}
-                            category={category}
-                            price={price}
-                            id={id}
-                           />
-                })
-                }
-                </tbody>
-                
-            </table>
-        </div>)
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
 }
 
 export default App;
