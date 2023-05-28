@@ -19,6 +19,7 @@ const router = createBrowserRouter([
     element: <Details />,
   },
 ]);
+
 root.render(
   <React.StrictMode>
     <header>Second Hand</header>

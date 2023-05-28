@@ -1,12 +1,7 @@
 import currencyFormatter from 'currency-formatter';
 
-console.log(currencyFormatter);
-
-function PriceRow(props) {
-  return (
-    <>
-      {currencyFormatter.format(props.price * 38, { code: props.currency })}
-    </>
-  );
+function PriceRow({ price, currency, exchangeRate }) {
+  return <>{currencyFormatter.format(price * exchangeRate, { code: currency })}</>;
 }
+
 export default PriceRow;
