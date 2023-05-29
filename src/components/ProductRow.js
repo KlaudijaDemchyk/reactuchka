@@ -1,5 +1,4 @@
-import { Link, useMatch } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PriceRow from './PriceRow';
 
 function ProductRow({ id, title, category, price, currency, exchangeRate }) {

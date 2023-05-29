@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useMatch } from 'react-router-dom';
 import './App.css';
 import './index.css';
-import ProductRow from './ProductRow';
+import ProductRow from './components/ProductRow';
 
 // import {AddReactionRounded} from "@mui/icons-material";
 
@@ -13,9 +12,11 @@ function App({ currency: globalCurrency }) {
   const [currency, setCurrency] = useState(globalCurrency);
   const [exchangeRate, setExchangeRate] = useState(1);
 
+  const REACT_APP_API_KEY ='FCLsj2bAfHqpXeBRzT0aObMkrQm6Za1N';
+  
   useEffect(() => {
     const myHeaders = new Headers();
-    myHeaders.append('apikey', 'Fcpm4MRvvOKwa4f09a6EzMJzBuJYWGza');
+    myHeaders.append('apikey', REACT_APP_API_KEY);
 
     const requestOptions = {
       method: 'GET',

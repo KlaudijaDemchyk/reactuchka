@@ -3,9 +3,6 @@ import './App.css';
 import './index.css';
 import {useParams} from 'react-router-dom';
 
-
-// import {AddReactionRounded} from "@mui/icons-material";
-
 function Details() {
     const [product
         , setProduct] = useState({});
@@ -16,14 +13,14 @@ function Details() {
             .then(value => {
                 setProduct(value)
             })
-    }, []);
+    }, [id]);
     console.log(product);
     return (
         <div>
        <h1>
            {product.title}
        </h1>
-            <img src={product.image}/>
+            <img src={product.image} alt=""/>
 
             Lorem ipsum dolor sit amet. {id}
         </div>)
